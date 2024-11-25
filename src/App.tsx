@@ -46,6 +46,7 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>Shambhavi Mahamudra</h1>
+      <Button style={{ alignSelf:'center', marginInline: 40}} variant='contained' onClick={handlePlayAll}>Play</Button>
       {audioFiles.map((file, index) => (
         <div key={index} style={{ marginBottom: '20px' }}>
           <p>Audio File {index + 1}: {file.src} (Repeat {file.repeat} times)</p>
@@ -62,7 +63,6 @@ const App: React.FC = () => {
           </button>
         </div>
       ))}
-      <Button style={{ alignSelf:'center', marginInline: 40}} variant='contained' onClick={handlePlayAll}>Play</Button>
       <SoundPlayer audioFiles={audioFiles} startIndex={startIndex} play={play} />
     </div>
   );
