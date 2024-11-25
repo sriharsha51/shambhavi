@@ -1,0 +1,70 @@
+import React, { useState } from 'react';
+import SoundPlayer from './components/SoundPlayer';
+import { Button } from '@mui/material';
+
+interface AudioFile {
+  src: string;
+  delay: number;
+  repeat: number;
+}
+
+const App: React.FC = () => {
+  const [delays, setDelays] = useState<number[]>([120000, 40000, 40000, 10000, 1000, 300000, 25000, 1000, 60000, 60000, 300000, 1000]); // Default delays
+  const [startIndex, setStartIndex] = useState<number>(0); // Track the index to start playback from
+  const [play, setPlay] = useState<boolean>(false); // Control when to start playback
+
+  const audioFiles: AudioFile[] = [
+    { src: '/pathangasan.mp3', delay: delays[0], repeat: 1 },
+    { src: '/shishupalasanRight.mp3', delay: delays[1], repeat: 1 },
+    { src: '/shishupalasanLeft.mp3', delay: delays[2], repeat: 1 },
+    { src: '/nadiVibhajan.mp3', delay: delays[3], repeat: 1 },
+    { src: '/nadiVibhajanCount.mp3', delay: delays[4], repeat: 3 },
+    { src: '/analomVilom.mp3', delay: delays[5], repeat: 1 },
+    { src: '/omChantingSeparator.mp3', delay: delays[6], repeat: 1 },
+    { src: '/omChanting.mp3', delay: delays[7], repeat: 21 },
+    { src: '/vipareetSwas.mp3', delay: delays[8], repeat: 1 },
+    { src: '/bandhanas.mp3', delay: delays[9], repeat: 1 },
+    { src: '/shambhaviMudra.mp3', delay: delays[10], repeat: 1 },
+    { src: '/openEyes.mp3', delay: delays[11], repeat: 1 },
+  ];
+
+  const handleDelayChange = (index: number, newDelay: number) => {
+    const updatedDelays = [...delays];
+    updatedDelays[index] = newDelay;
+    setDelays(updatedDelays);
+  };
+
+  const handlePlayFromIndex = (index: number) => {
+    setStartIndex(index); // Set the index from where playback should start
+  };
+
+  const handlePlayAll = () => {
+    setPlay(true); // Trigger playback when the button is clicked
+  };
+
+  return (
+    <div>
+      <h1>Shambhavi Mahamudra</h1>
+      {audioFiles.map((file, index) => (
+        <div key={index} style={{ marginBottom: '20px' }}>
+          <p>Audio File {index + 1}: {file.src} (Repeat {file.repeat} times)</p>
+          <label>
+            Delay after this file (ms):
+            <input
+              type="number"
+              value={delays[index]}
+              onChange={(e) => handleDelayChange(index, parseInt(e.target.value))}
+            />
+          </label>
+          <button onClick={() => handlePlayFromIndex(index)}>
+            Set the audio file to be played from
+          </button>
+        </div>
+      ))}
+      <Button style={{ alignSelf:'center', marginInline: 40}} variant='contained' onClick={handlePlayAll}>Play</Button>
+      <SoundPlayer audioFiles={audioFiles} startIndex={startIndex} play={play} />
+    </div>
+  );
+};
+
+export default App;
