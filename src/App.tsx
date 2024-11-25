@@ -14,19 +14,20 @@ const App: React.FC = () => {
   const [play, setPlay] = useState<boolean>(false); // Control when to start playback
 
   const audioFiles: AudioFile[] = [
-    { src: '/pathangasan.mp3', delay: delays[0], repeat: 1 },
-    { src: '/shishupalasanRight.mp3', delay: delays[1], repeat: 1 },
-    { src: '/shishupalasanLeft.mp3', delay: delays[2], repeat: 1 },
-    { src: '/nadiVibhajan.mp3', delay: delays[3], repeat: 1 },
-    { src: '/nadiVibhajanCount.mp3', delay: delays[4], repeat: 3 },
-    { src: '/analomVilom.mp3', delay: delays[5], repeat: 1 },
-    { src: '/omChantingSeparator.mp3', delay: delays[6], repeat: 1 },
-    { src: '/omChanting.mp3', delay: delays[7], repeat: 21 },
-    { src: '/vipareetSwas.mp3', delay: delays[8], repeat: 1 },
-    { src: '/bandhanas.mp3', delay: delays[9], repeat: 1 },
-    { src: '/shambhaviMudra.mp3', delay: delays[10], repeat: 1 },
-    { src: '/openEyes.mp3', delay: delays[11], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}pathangasan.mp3`, delay: delays[0], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}shishupalasanRight.mp3`, delay: delays[1], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}shishupalasanLeft.mp3`, delay: delays[2], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}nadiVibhajan.mp3`, delay: delays[3], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}nadiVibhajanCount.mp3`, delay: delays[4], repeat: 3 },
+    { src: `${import.meta.env.BASE_URL}analomVilom.mp3`, delay: delays[5], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}omChantingSeparator.mp3`, delay: delays[6], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}omChanting.mp3`, delay: delays[7], repeat: 21 },
+    { src: `${import.meta.env.BASE_URL}vipareetSwas.mp3`, delay: delays[8], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}bandhanas.mp3`, delay: delays[9], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}shambhaviMudra.mp3`, delay: delays[10], repeat: 1 },
+    { src: `${import.meta.env.BASE_URL}openEyes.mp3`, delay: delays[11], repeat: 1 },
   ];
+  
 
   const handleDelayChange = (index: number, newDelay: number) => {
     const updatedDelays = [...delays];
