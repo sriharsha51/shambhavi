@@ -10,9 +10,10 @@ interface SoundPlayerProps {
   audioFiles: AudioFile[];
   startIndex: number;
   play: boolean;
+  onPlaybackComplete: () => void;
 }
 
-const SoundPlayer: React.FC<SoundPlayerProps> = ({ audioFiles, startIndex, play }) => {
+const SoundPlayer: React.FC<SoundPlayerProps> = ({ audioFiles, startIndex, play, onPlaybackComplete }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false); // Track whether audio is currently playing
 
@@ -26,6 +27,7 @@ const SoundPlayer: React.FC<SoundPlayerProps> = ({ audioFiles, startIndex, play 
       await delay(file.delay); // Wait for custom delay after all repeats for this audio file
     }
     setIsPlaying(false); // Reset playing state after all files have played
+    onPlaybackComplete(); // Notify parent component
   };
 
   const playAudio = (src: string): Promise<void> => {
