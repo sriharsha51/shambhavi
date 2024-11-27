@@ -52,7 +52,8 @@ const App: React.FC = () => {
         });
       }
     } catch (err) {
-      console.error(`Failed to acquire Wake Lock: ${err.message}`);
+      const errorMessage = (err as Error).message;
+      console.error(`Failed to acquire Wake Lock: ${errorMessage}`);
     }
 
     setPlay(true); // Trigger playback
